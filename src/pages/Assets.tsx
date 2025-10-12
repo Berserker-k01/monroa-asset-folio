@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { isDemoMode, getDemoAssets, deleteDemoAsset } from "@/lib/demoMode";
 import Navigation from "@/components/Navigation";
 import AssetCard from "@/components/AssetCard";
 import { Input } from "@/components/ui/input";
@@ -51,6 +52,14 @@ const Assets = () => {
 
   const fetchAssets = async () => {
     try {
+      // Use demo data if in demo mode
+      if (isDemoMode()) {
+        const demoAssets = getDemoAssets();
+        setAssets(demoAssets);
+        setAssetsLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('assets')
         .select('*')
@@ -100,6 +109,18 @@ const Assets = () => {
     if (!deleteAssetId) return;
 
     try {
+      // Use demo mode if active
+      if (isDemoMode()) {
+        deleteDemoAsset(deleteAssetId);
+        toast({
+          title: "Bien supprimé",
+          description: "Le bien a été supprimé avec succès",
+        });
+        setAssets(assets.filter(a => a.id !== deleteAssetId));
+        setDeleteAssetId(null);
+        return;
+      }
+
       const { error } = await supabase
         .from('assets')
         .delete()

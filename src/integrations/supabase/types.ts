@@ -21,6 +21,8 @@ export type Database = {
           estimated_value: number
           id: string
           images: string[] | null
+          latitude: number | null
+          longitude: number | null
           location: string
           name: string
           status: Database["public"]["Enums"]["asset_status"]
@@ -34,6 +36,8 @@ export type Database = {
           estimated_value: number
           id?: string
           images?: string[] | null
+          latitude?: number | null
+          longitude?: number | null
           location: string
           name: string
           status?: Database["public"]["Enums"]["asset_status"]
@@ -47,6 +51,8 @@ export type Database = {
           estimated_value?: number
           id?: string
           images?: string[] | null
+          latitude?: number | null
+          longitude?: number | null
           location?: string
           name?: string
           status?: Database["public"]["Enums"]["asset_status"]

@@ -1,5 +1,40 @@
 # Welcome to your Lovable project
 
+## 🆕 Nouvelles fonctionnalités (Octobre 2025)
+
+### 🎭 Mode Démo
+**Testez l'application immédiatement sans configuration !**
+
+**Identifiants de test** :
+- 📧 Email : `demo@monroa.com`
+- 🔑 Mot de passe : `demo123`
+
+Le mode démo inclut 6 biens fictifs avec coordonnées GPS pour tester toutes les fonctionnalités, y compris la carte interactive !
+
+👉 **[Guide complet du mode démo](./GUIDE_DEMO.md)**
+
+### 🚀 Démarrage rapide
+**Nouveau sur la carte interactive ?** → Lisez **[QUICK_START.md](./QUICK_START.md)** pour commencer en 5 minutes !
+
+### 🗺️ Carte Interactive
+- **Nouvelle page `/map`** : Visualisez tous vos biens sur une carte interactive
+- **Géolocalisation des biens** : Ajoutez des coordonnées GPS (latitude/longitude) à vos biens
+- **Markers cliquables** : Cliquez sur un bien pour voir ses détails
+- **Zoom automatique** : La carte s'ajuste pour afficher tous vos biens
+
+### 🎨 Logo personnalisé
+- Logo MonRoa intégré dans la navigation
+- Favicon personnalisé dans l'onglet du navigateur
+- Métadonnées Open Graph pour le partage social
+
+### 📚 Documentation
+- **[GUIDE_DEMO.md](./GUIDE_DEMO.md)** : Guide complet du mode démo 🎭
+- **[QUICK_START.md](./QUICK_START.md)** : Guide de démarrage rapide (5 min)
+- **[GUIDE_CARTE.md](./GUIDE_CARTE.md)** : Guide complet d'utilisation de la carte (français)
+- **[COORDONNEES_EXEMPLES.md](./COORDONNEES_EXEMPLES.md)** : Exemples de coordonnées GPS pour l'Afrique de l'Ouest
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** : Instructions de déploiement et migration Supabase
+- **[TASKS_COMPLETED.md](./TASKS_COMPLETED.md)** : Liste des tâches accomplies
+
 ## Project info
 
 **URL**: https://lovable.dev/projects/a585b495-7eef-47b8-80b5-48e98157247c

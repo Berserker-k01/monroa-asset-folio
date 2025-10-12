@@ -2,6 +2,14 @@ import { useState, useEffect, createContext, useContext, ReactNode } from 'react
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import {
+  isDemoMode,
+  enableDemoMode,
+  disableDemoMode,
+  getDemoUser,
+  isDemoCredentials,
+  DEMO_CREDENTIALS,
+} from '@/lib/demoMode';
 
 interface AuthContextType {
   user: User | null;
@@ -21,6 +29,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { toast } = useToast();
 
   useEffect(() => {
+    // Check if demo mode is active
+    if (isDemoMode()) {
+      const demoUser = getDemoUser();
+      setUser(demoUser as any);
+      setLoading(false);
+      return;
+    }
+
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
@@ -42,6 +58,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signIn = async (email: string, password: string) => {
     try {
+      // Check if demo credentials
+      if (isDemoCredentials(email, password)) {
+        enableDemoMode();
+        const demoUser = getDemoUser();
+        setUser(demoUser as any);
+        
+        toast({
+          title: "Mode Démo activé 🎭",
+          description: "Bienvenue dans le mode démo de MonRoa Gestion!",
+        });
+        return;
+      }
+
+      // Regular Supabase authentication
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -94,6 +124,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signOut = async () => {
     try {
+      // Check if in demo mode
+      if (isDemoMode()) {
+        disableDemoMode();
+        setUser(null);
+        setSession(null);
+        
+        toast({
+          title: "Déconnexion réussie",
+          description: "À bientôt! 👋",
+        });
+        return;
+      }
+
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
 

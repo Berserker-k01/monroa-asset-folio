@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { isDemoMode, getDemoAssets } from "@/lib/demoMode";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,14 @@ const Dashboard = () => {
 
   const fetchAssets = async () => {
     try {
+      // Use demo data if in demo mode
+      if (isDemoMode()) {
+        const demoAssets = getDemoAssets();
+        setAssets(demoAssets);
+        setStatsLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('assets')
         .select('*')

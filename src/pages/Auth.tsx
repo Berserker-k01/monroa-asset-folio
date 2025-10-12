@@ -6,7 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Building2 } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Building2, TestTube } from "lucide-react";
+import { DEMO_CREDENTIALS } from "@/lib/demoMode";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -83,6 +85,25 @@ const Auth = () => {
               
               <TabsContent value="signin">
                 <form onSubmit={handleSignIn} className="space-y-4">
+                  {/* Demo Mode Alert */}
+                  <Alert className="bg-primary/10 border-primary/20">
+                    <TestTube className="h-4 w-4 text-primary" />
+                    <AlertDescription className="text-sm">
+                      <strong>Mode Démo disponible !</strong>
+                      <div className="mt-2 space-y-1">
+                        <p className="font-mono text-xs">
+                          📧 Email: <span className="font-semibold">{DEMO_CREDENTIALS.email}</span>
+                        </p>
+                        <p className="font-mono text-xs">
+                          🔑 Mot de passe: <span className="font-semibold">{DEMO_CREDENTIALS.password}</span>
+                        </p>
+                      </div>
+                      <p className="text-xs mt-2 text-muted-foreground">
+                        Utilisez ces identifiants pour tester l'application avec des données fictives
+                      </p>
+                    </AlertDescription>
+                  </Alert>
+
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input

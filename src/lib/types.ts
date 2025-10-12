@@ -21,6 +21,8 @@ export interface Asset {
   name: string;
   type: AssetType;
   location: string;
+  latitude?: number;
+  longitude?: number;
   estimated_value: number;
   status: AssetStatus;
   description?: string;

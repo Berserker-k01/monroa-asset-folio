@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Package, Plus, Settings, Info, LogOut } from "lucide-react";
+import { Home, Package, Plus, Map, Info, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ const Navigation = () => {
   const navItems = [
     { path: "/dashboard", icon: Home, label: "Tableau de bord" },
     { path: "/assets", icon: Package, label: "Mes biens" },
+    { path: "/map", icon: Map, label: "Carte" },
     { path: "/add-asset", icon: Plus, label: "Ajouter" },
     { path: "/about", icon: Info, label: "À propos" },
   ];
@@ -20,9 +21,11 @@ const Navigation = () => {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center justify-between px-6 py-4 bg-card border-b shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <span className="text-white font-bold text-xl">M</span>
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="MonRoa Logo" 
+            className="w-14 h-14 rounded-xl object-contain"
+          />
           <div>
             <h1 className="text-xl font-bold text-secondary">MonRoa</h1>
             <p className="text-xs text-muted-foreground">Gestion</p>
