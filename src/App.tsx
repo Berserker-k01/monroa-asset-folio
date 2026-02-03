@@ -10,6 +10,9 @@ import Dashboard from "./pages/Dashboard";
 import Assets from "./pages/Assets";
 import AddEditAsset from "./pages/AddEditAsset";
 import MapPage from "./pages/MapPage";
+import Marketplace from "./pages/Marketplace";
+import AssetDetails from "./pages/AssetDetails";
+import MySales from "./pages/MySales";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +32,9 @@ const App = () => (
             <Route path="/assets" element={<Assets />} />
             <Route path="/add-asset" element={<AddEditAsset />} />
             <Route path="/map" element={<MapPage />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/marketplace/:id" element={<AssetDetails />} />
+            <Route path="/my-sales" element={<MySales />} />
             <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

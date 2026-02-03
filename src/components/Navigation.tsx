@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Package, Plus, Map, Info, LogOut } from "lucide-react";
+import { Home, Package, Plus, Map, ShoppingCart, Store, Info, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,8 @@ const Navigation = () => {
   const navItems = [
     { path: "/dashboard", icon: Home, label: "Tableau de bord" },
     { path: "/assets", icon: Package, label: "Mes biens" },
+    { path: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
+    { path: "/my-sales", icon: Store, label: "Mes Ventes" },
     { path: "/map", icon: Map, label: "Carte" },
     { path: "/add-asset", icon: Plus, label: "Ajouter" },
     { path: "/about", icon: Info, label: "À propos" },

@@ -4,12 +4,15 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { isDemoMode, addDemoAsset, updateDemoAsset } from "@/lib/demoMode";
 import Navigation from "@/components/Navigation";
+import MediaUpload from "@/components/MediaUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
 import { ASSET_TYPES, ASSET_STATUSES, Asset, AssetType, AssetStatus } from "@/lib/types";
 import { isValidCoordinate, getGoogleMapsUrl } from "@/lib/coordinates";
 import { useToast } from "@/hooks/use-toast";
@@ -34,6 +37,15 @@ const AddEditAsset = () => {
     status: editingAsset?.status || ("disponible" as AssetStatus),
     description: editingAsset?.description || "",
     images: editingAsset?.images || [],
+    // Marketplace fields
+    is_on_marketplace: editingAsset?.is_on_marketplace || false,
+    sale_price: editingAsset?.sale_price?.toString() || "",
+    rental_price_monthly: editingAsset?.rental_price_monthly?.toString() || "",
+    lease_price: editingAsset?.lease_price?.toString() || "",
+    bedrooms: editingAsset?.bedrooms?.toString() || "",
+    bathrooms: editingAsset?.bathrooms?.toString() || "",
+    surface_area: editingAsset?.surface_area?.toString() || "",
+    year_built: editingAsset?.year_built?.toString() || "",
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -62,6 +74,15 @@ const AddEditAsset = () => {
         description: formData.description || null,
         images: formData.images,
         user_id: user.id,
+        // Marketplace fields
+        is_on_marketplace: formData.is_on_marketplace,
+        sale_price: formData.sale_price ? parseFloat(formData.sale_price) : null,
+        rental_price_monthly: formData.rental_price_monthly ? parseFloat(formData.rental_price_monthly) : null,
+        lease_price: formData.lease_price ? parseFloat(formData.lease_price) : null,
+        bedrooms: formData.bedrooms ? parseInt(formData.bedrooms) : null,
+        bathrooms: formData.bathrooms ? parseInt(formData.bathrooms) : null,
+        surface_area: formData.surface_area ? parseFloat(formData.surface_area) : null,
+        year_built: formData.year_built ? parseInt(formData.year_built) : null,
       };
 
       // Use demo mode if active
